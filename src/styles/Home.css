@@ -1,0 +1,243 @@
+/* Home.css */
+
+/* Global Styles */
+/* Our Story Section */
+.our-story {
+  background-color: #f7f7f7;
+  padding: 40px 20px;
+  text-align: center;
+  color: #333;
+}
+
+.our-story h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.our-story p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Address Section */
+.address {
+  background-color: #333;
+  color: #fff;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.address h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.address p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Additional Styling */
+.hero-section {
+  background-image: url('https://i.imgur.com/8Ygh2gZ.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 50px;
+  text-align: center;
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    height: 400px;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/5b8f1398297114a7cbc364e7/1536756642786-79PDJAEVZO00OV16YBWA/crums-homepage.jpg?format=2500w'); /* Replace with a food-themed banner */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-text p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .shop-now-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #D9534F; /* A rich, warm color for a sauce theme */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .shop-now-btn:hover {
+    background-color: #C9302C;
+  }
+  
+  /* Sauce Categories Section */
+  .categories {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .category-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .category-card {
+    width: 250px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .category-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .category-card h3 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: #D9534F; /* Sauce-themed color */
+  }
+  
+  /* Featured Products Section */
+  .featured-products {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .product-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .product-card {
+    width: 250px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .product-card h3 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+  }
+  
+  .product-card p {
+    font-size: 1.2rem;
+    color: #D9534F;
+  }
+  
+  .view-details-btn {
+    padding: 10px 20px;
+    background-color: #D9534F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .view-details-btn:hover {
+    background-color: #C9302C;
+  }
+  
+  /* About Us Section */
+  .about-us {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .about-us p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  /* Special Promotions Section */
+  .special-promotions {
+    padding: 40px 20px;
+    background-color: #F8D7DA; /* Light pinkish background for promo section */
+    text-align: center;
+  }
+  
+  .promotion-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .promotion-card {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .promotion-card h3 {
+    font-size: 1.5rem;
+    color: #D9534F;
+  }
+  
+  .promotion-card p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .cta-btn {
+    padding: 12px 20px;
+    background-color: #C9302C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cta-btn:hover {
+    background-color: #A8271F;
+  }
+  
