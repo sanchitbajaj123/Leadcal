@@ -30,7 +30,8 @@ const userSchema = new mon.Schema({
     action: { type: String },  // signup, login, addtocart, payment
     points: { type: Number, default: 0 },
     timestamp: { type: Date, default: Date.now }
-  }]
+  }],
+  timestamps:true
 });
 
 // Model

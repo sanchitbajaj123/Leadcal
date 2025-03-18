@@ -66,11 +66,11 @@ const Cart = ({ cartItems, onRemoveItem }) => {
               <li key={item.id} className="cart-item">
                 <img src={item.image} alt={item.title} className="product-image" />
                 <div className="item-details">
-                  <h3>{item.title}</h3>
+                  <center><h3>{item.name}</h3></center>
                   <p>{item.description}</p>
                   <p>Price: ₹{item.price}</p>
                 </div>
-                <button onClick={() => { onRemoveItem(item.title) }} className="remove-item">
+                <button onClick={async() => { await onRemoveItem(item.name) }} className="remove-item">
                   Remove
                 </button>
               </li>

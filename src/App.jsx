@@ -65,10 +65,16 @@ const App = () => {
     handleCloseModal();
   };
 
-  const handleRemoveItem = async(itemId) => {
-    await remove(email,itemId);
-
+  const handleRemoveItem = async (productName) => {
+    const response = await remove(email, productName);
+  
+    if (!response.error) {
+      setCart(cart.filter(item => item.name !== productName)); 
+    } else {
+      console.error('Error removing product:', response.error);
+    }
   };
+  
 
   return (
     <div>
