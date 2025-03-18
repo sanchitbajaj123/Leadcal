@@ -37,9 +37,9 @@ const Cart = ({ cartItems, onRemoveItem }) => {
           // Optionally, send confirmation to backend
         },
         prefill: {
-          name: "Hardeepak Singh",
-          email: "Hardeepak78@gmail.com",
-          contact: "9998889898",
+          name: "SANCHIT BAJAJ",
+          email: "sanchitbajaj@gmail.com",
+          contact: "7347204088",
         },
         theme: {
           color: "#2c3e50"

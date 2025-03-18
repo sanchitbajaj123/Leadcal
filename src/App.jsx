@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Shop from './components/Shop';
 import Cart from './components/Cart';
 import list from './list';
+import { getCart } from './api'; // Import getCart function
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -13,19 +14,27 @@ const App = () => {
   const [modalData, setModalData] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  const email = localStorage.getItem('name'); // Assuming user email is stored in localStorage
+
+  // Fetch cart from DB on mount
+  useEffect(() => {
+    const fetchCart = async () => {
+      const dbCart = await getCart(email);
+      setCart(dbCart);
+    };
+    fetchCart();
+  }, []);
+
   const handleClick = (item) => {
-    let isPresent = false;
-    cart.forEach((c) => {
-      if (item.id === c.id) {
-        isPresent = true;
-      }
-    });
+    let isPresent = cart.some(c => c.name === item.name);
     if (isPresent) {
       setWarning(true);
       setTimeout(() => {
         setWarning(false);
       }, 2000);
     } else {
+      // Send request to backend to add product to DB
+      // (Optional: You may have an API for that)
       setMessage(true);
       setTimeout(() => {
         setMessage(false);
@@ -36,7 +45,6 @@ const App = () => {
 
   const handleShowCart = () => {
     setShowCart(!showCart);
-    console.log(showCart); // Debugging
   };
 
   const handleCloseCart = () => {
@@ -58,12 +66,8 @@ const App = () => {
   };
 
   const handleRemoveItem = (itemId) => {
-    setCart(cart.filter(item => item.id !== itemId));
+    setCart(cart.filter(item => item._id !== itemId)); // Use _id from DB
   };
-
-  useEffect(() => {
-    console.log(showCart); // Debugging
-  }, [showCart]);
 
   return (
     <div>
@@ -83,9 +87,7 @@ const App = () => {
         </div>
       )}
 
-
       <Shop handleClick={handleClick} list={list} handleOpenModal={handleOpenModal} />
-
 
       {showModal && modalData && (
         <div className="modal-overlay">
@@ -106,4 +108,5 @@ const App = () => {
     </div>
   );
 };
+
 export default App;

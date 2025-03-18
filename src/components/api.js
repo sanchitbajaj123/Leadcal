@@ -49,4 +49,15 @@ export const makePayment = async (paymentData) => {
   }
 };
 
+export const getCart = async (email) => {
+  try {
+    const response = await API.get('/getcart', { params: { email } }); // Pass email as query param
+    return response.data.products; 
+  } catch (error) {
+    console.error('Fetching cart failed:', error);
+    return [];
+  }
+};
+
+
 export default API;
