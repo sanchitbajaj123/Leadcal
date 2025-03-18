@@ -210,7 +210,21 @@ app.get('/getcart', async (req, res) => {
     res.status(500).json({ message: 'Error fetching cart', error: err.message });
   }
 });
-
+app.post('/removecart', async (req, res) => {
+  try {
+    const { email, productName } = req.body;
+    const user = await User.findOne({ email });
+    for(let i=0;i<user.products.length;i++){
+      if(user.products[i].name==productName){
+        user.products[i].cartadded=false;
+      }
+    }
+  }
+    catch (err) {
+      res.status(500).json({ message: 'Error removing from cart', error: err.message });
+    }
+  
+  })
       
 
 // Default Route

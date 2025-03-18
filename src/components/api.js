@@ -59,5 +59,13 @@ export const getCart = async (email) => {
   }
 };
 
+export const remove=async(email,productName)=>{
+  try{
+    const response=await API.post('/remove',{email,productName});
+    return response.data;
+  }catch(error){
+    return {error:error.response?.data?.message || 'Removing product failed'};
+  }
+}
 
 export default API;

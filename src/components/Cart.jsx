@@ -70,7 +70,7 @@ const Cart = ({ cartItems, onRemoveItem }) => {
                   <p>{item.description}</p>
                   <p>Price: ₹{item.price}</p>
                 </div>
-                <button onClick={() => { onRemoveItem(item.id) }} className="remove-item">
+                <button onClick={() => { onRemoveItem(item.title) }} className="remove-item">
                   Remove
                 </button>
               </li>

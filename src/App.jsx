@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Shop from './components/Shop';
 import Cart from './components/Cart';
 import list from './list';
-import { getCart } from './api'; // Import getCart function
+import { getCart,remove } from './components/api';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -14,7 +14,7 @@ const App = () => {
   const [modalData, setModalData] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  const email = localStorage.getItem('name'); // Assuming user email is stored in localStorage
+  const email = localStorage.getItem('name'); 
 
   // Fetch cart from DB on mount
   useEffect(() => {
@@ -65,8 +65,9 @@ const App = () => {
     handleCloseModal();
   };
 
-  const handleRemoveItem = (itemId) => {
-    setCart(cart.filter(item => item._id !== itemId)); // Use _id from DB
+  const handleRemoveItem = async(itemId) => {
+    await remove(email,itemId);
+
   };
 
   return (
