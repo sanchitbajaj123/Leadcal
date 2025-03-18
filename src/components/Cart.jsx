@@ -3,12 +3,13 @@ import '../styles/Cart.css';
 import { makePayment } from './api'; // Import your API function
 
 const Cart = ({ cartItems, onRemoveItem }) => {
+  console.log(cartItems);
   const totalAmount = cartItems.reduce((sum, item) => sum + item.price, 0);
   const itemNames = cartItems.map(item => item.title).join(', ');
 
   const handlePayment = async () => {
     try {
-      const email = localStorage.getItem('name'); // Assuming user email is stored in localStorage
+      const email = localStorage.getItem('name'); 
 
       const paymentData = {
         amount: totalAmount,
@@ -67,6 +68,7 @@ const Cart = ({ cartItems, onRemoveItem }) => {
                 <img src={item.image} alt={item.title} className="product-image" />
                 <div className="item-details">
                   <center><h3>{item.name}</h3></center>
+                  <center><h3>{item.title}</h3></center>
                   <p>{item.description}</p>
                   <p>Price: ₹{item.price}</p>
                 </div>
