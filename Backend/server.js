@@ -219,6 +219,8 @@ app.post('/removecart', async (req, res) => {
         user.products[i].cartadded=false;
       }
     }
+    await user.save();
+    res.status(200).json({ message: 'Product removed from cart', products: user.products });
   }
     catch (err) {
       res.status(500).json({ message: 'Error removing from cart', error: err.message });
