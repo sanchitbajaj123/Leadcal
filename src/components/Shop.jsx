@@ -35,7 +35,7 @@ const Shop = ({ handleClick, list, handleOpenModal }) => {
   };
 
   const handleAddToCart = (item) => {
-    const email = localStorage.getItem('userEmail');
+    const email = localStorage.getItem('name');
     if (!email) return;
 
     addToCart({ email, productName: item.title })
