@@ -74,14 +74,26 @@ app.post('/login', async (req, res) => {
     if (!user) return res.status(404).json({ message: 'User not found!' });
     if (user.pass !== pass) return res.status(400).json({ message: 'Incorrect password!' });
 
+    // Update lead points
     user.leadpoints += 1;
+
+    // Set mailsent = false for all products
+    user.products.forEach(product => {
+      product.mailsent = false;
+    });
+
     await user.save();
 
-    res.status(200).json({ message: 'Login successful +1 point awarded', leadpoints: user.leadpoints, user });
+    res.status(200).json({ 
+      message: 'Login successful +1 point awarded, mailsent reset', 
+      leadpoints: user.leadpoints, 
+      user 
+    });
   } catch (err) {
     res.status(500).json({ message: 'Error in login', error: err.message });
   }
 });
+
 
 // Add Product Route
 app.post('/addproduct', async (req, res) => {
