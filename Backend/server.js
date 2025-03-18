@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mon = require('mongoose');
-const env= require('dotenv');
+const env = require('dotenv');
 env.config();
+
 // MongoDB Connection
 const mongoURI = process.env.MONGO_URI;
 mon.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -24,7 +25,12 @@ const userSchema = new mon.Schema({
   }],
   timespent: String,
   address: String,
-  leadpoints: { type: Number, default: 0 }
+  leadpoints: { type: Number, default: 0 },
+  leadpointsrecord: [{
+    action: { type: String },  // signup, login, addtocart, payment
+    points: { type: Number, default: 0 },
+    timestamp: { type: Date, default: Date.now }
+  }]
 });
 
 // Model
@@ -56,8 +62,14 @@ app.post('/signup', async (req, res) => {
       address,
       products: [],
       timespent: '0',
-      leadpoints: 5 // Add 5 points on signup
+      leadpoints: 5,
+      leadpointsrecord: [{
+        action: 'signup',
+        points: 5,
+        timestamp: new Date()
+      }]
     });
+
     await newUser.save();
     res.status(201).json({ message: 'User registered successfully! +5 points awarded', leadpoints: newUser.leadpoints });
   } catch (err) {
@@ -76,6 +88,11 @@ app.post('/login', async (req, res) => {
 
     // Update lead points
     user.leadpoints += 1;
+    user.leadpointsrecord.push({
+      action: 'login',
+      points: 1,
+      timestamp: new Date()
+    });
 
     // Set mailsent = false for all products
     user.products.forEach(product => {
@@ -84,16 +101,15 @@ app.post('/login', async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ 
-      message: 'Login successful +1 point awarded, mailsent reset', 
-      leadpoints: user.leadpoints, 
-      user 
+    res.status(200).json({
+      message: 'Login successful +1 point awarded, mailsent reset',
+      leadpoints: user.leadpoints,
+      user
     });
   } catch (err) {
     res.status(500).json({ message: 'Error in login', error: err.message });
   }
 });
-
 
 // Add Product Route
 app.post('/addproduct', async (req, res) => {
@@ -133,7 +149,13 @@ app.post('/addtocart', async (req, res) => {
 
     if (!productFound) return res.status(404).json({ message: 'Product not found!' });
 
-    user.leadpoints += 3; // Add 3 points
+    user.leadpoints += 3;
+    user.leadpointsrecord.push({
+      action: 'addtocart',
+      points: 3,
+      timestamp: new Date()
+    });
+
     await user.save();
     res.status(200).json({ message: 'Product added to cart +3 points awarded', leadpoints: user.leadpoints, products: user.products });
   } catch (err) {
@@ -158,7 +180,13 @@ app.post('/payment', async (req, res) => {
 
     if (!productFound) return res.status(404).json({ message: 'Product not found!' });
 
-    user.leadpoints += 10; // Add 10 points
+    user.leadpoints += 10;
+    user.leadpointsrecord.push({
+      action: 'payment',
+      points: 10,
+      timestamp: new Date()
+    });
+
     await user.save();
     res.status(200).json({ message: 'Payment done +10 points awarded', leadpoints: user.leadpoints, products: user.products });
   } catch (err) {
@@ -167,9 +195,9 @@ app.post('/payment', async (req, res) => {
 });
 
 // Default Route
-app.get('/', async(req, res) => {
-    const allUsers = await User.find({});
-    res.status(200).json(allUsers);
+app.get('/', async (req, res) => {
+  const allUsers = await User.find({});
+  res.status(200).json(allUsers);
 });
 
 // Server Start
