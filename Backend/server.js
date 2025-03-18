@@ -31,8 +31,7 @@ const userSchema = new mon.Schema({
     points: { type: Number, default: 0 },
     timestamp: { type: Date, default: Date.now }
   }],
-  timestamps:true
-});
+},{timestamps: true});
 
 // Model
 const User = mon.model('User', userSchema);
