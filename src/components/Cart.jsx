@@ -4,7 +4,7 @@ import { makePayment } from './api'; // Import your API function
 
 const Cart = ({ cartItems, onRemoveItem }) => {
   console.log(cartItems);
-  const totalAmount = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const totalAmount = cartItems.reduce((sum, item) => sum + parseInt(item.price, 10), 0);
   const itemNames = cartItems.map(item => item.title).join(', ');
 
   const handlePayment = async () => {
